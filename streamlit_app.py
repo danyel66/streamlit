@@ -21,6 +21,12 @@ def load_data(nrows):
 
 data=load_data(100000)
 
+
+st.header("where are the most poeple injured in NYC")
+injured_people= st.slider("Number of persons injured in vehicle collisons ",0,19)
+st.map(data.query("injured_persons >= @injured_people")[["latitude","longitude"]].dropna(how="any"))
+
+
 if st.checkbox("Show Raw Data", False):
     st.subheader('Raw Data')
     st.write(data)
